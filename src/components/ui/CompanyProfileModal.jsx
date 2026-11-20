@@ -17,7 +17,7 @@ export default function CompanyProfileModal({ open, onClose, onRequestSamples })
 
   return (
     <AnimatePresence>
-      {open && <motion.div className="fixed inset-0 z-50 flex items-end justify-center bg-forest/55 p-0 sm:items-center sm:p-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
+      {open && <motion.div className="fixed inset-0 z-[70] flex items-end justify-center bg-forest/55 p-0 sm:items-center sm:p-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
         <motion.section role="dialog" aria-modal="true" aria-labelledby="profile-title" className="company-profile-print max-h-[94vh] w-full max-w-4xl overflow-y-auto bg-white" initial={{ y: 22, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 16, opacity: 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}>
           <header className="relative bg-forest px-6 py-7 text-white md:px-10 md:py-9">
             <div className="flex flex-wrap items-center justify-between gap-5">

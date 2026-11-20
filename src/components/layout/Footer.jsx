@@ -5,7 +5,7 @@ export default function Footer({ onOpenProfile }) {
   const regions = ['Guji', 'Sidama', 'Yirgacheffe', 'Limu', 'Jimma', 'Nekemte'];
   return (
     <footer className="bg-forest text-cream">
-      <div className="mx-auto grid max-w-page gap-10 px-5 py-14 pb-24 md:grid-cols-2 md:px-8 md:pb-12 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] lg:gap-12 lg:py-16">
+      <div className="mx-auto grid max-w-page gap-10 px-5 py-14 md:grid-cols-2 md:px-8 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] lg:gap-12 lg:py-16">
         <div>
           <img src={logo} alt="Le'ii Coffee Exports PLC" className="mb-5 h-12 w-44 object-contain object-left" />
           <p className="max-w-sm text-sm leading-7 text-cream/75">Ethiopian coffee, connected to the world.</p>

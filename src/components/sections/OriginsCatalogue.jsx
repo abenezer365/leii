@@ -17,7 +17,7 @@ export default function OriginsCatalogue({ onSelectOrigin }) {
   }), [activeFilter]);
 
   return (
-    <section id="origins" className="scroll-mt-20 bg-cream px-5 py-16 md:px-8 md:py-24">
+    <section id="origins" className="scroll-mt-24 bg-cream px-5 py-16 md:px-8 md:py-24">
       <div className="mx-auto max-w-page">
         <SectionHeader eyebrow="One country. Six unmistakable profiles." title="Meet the origins." description="Choose a region. Find your next coffee." />
         <div className="-mx-5 mb-8 overflow-x-auto px-5 md:mx-0 md:px-0">

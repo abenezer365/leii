@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 import Navbar from './components/layout/Navbar.jsx';
-import MobileBottomNav from './components/layout/MobileBottomNav.jsx';
 import Footer from './components/layout/Footer.jsx';
 import HeroSection from './components/sections/HeroSection.jsx';
 import HeritageSection from './components/sections/HeritageSection.jsx';
@@ -10,6 +9,7 @@ import QualityWorkflowSection from './components/sections/QualityWorkflowSection
 import InquirySection from './components/sections/InquirySection.jsx';
 import OriginDetailModal from './components/ui/OriginDetailModal.jsx';
 import CompanyProfileModal from './components/ui/CompanyProfileModal.jsx';
+import WhatsAppLauncher from './components/ui/WhatsAppLauncher.jsx';
 
 export default function App() {
   const [selectedOrigin, setSelectedOrigin] = useState(null);
@@ -45,10 +45,10 @@ export default function App() {
         <OriginsCatalogue onSelectOrigin={setSelectedOrigin} />
         <ServicesSection onPartner={becomePartner} />
         <QualityWorkflowSection />
-        <InquirySection inquirySeed={inquirySeed} onOpenProfile={() => setProfileOpen(true)} />
+        <InquirySection inquirySeed={inquirySeed} />
       </main>
       <Footer onOpenProfile={() => setProfileOpen(true)} />
-      <MobileBottomNav onOpenProfile={() => setProfileOpen(true)} />
+      <WhatsAppLauncher />
       <OriginDetailModal origin={selectedOrigin} onClose={closeOrigin} onRequestSample={requestSample} />
       <CompanyProfileModal open={profileOpen} onClose={closeProfile} onRequestSamples={requestSamplesFromProfile} />
     </div>

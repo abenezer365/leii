@@ -14,7 +14,7 @@ export default function OriginDetailModal({ origin, onClose, onRequestSample }) 
 
   return (
     <AnimatePresence>
-      {origin && <motion.div className="fixed inset-0 z-50 flex items-end justify-center bg-forest/55 p-0 sm:items-center sm:p-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
+      {origin && <motion.div className="fixed inset-0 z-[70] flex items-end justify-center bg-forest/55 p-0 sm:items-center sm:p-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
         <motion.section role="dialog" aria-modal="true" aria-labelledby="origin-title" className="max-h-[92vh] w-full max-w-3xl overflow-y-auto bg-white" initial={{ y: 22, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 16, opacity: 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}>
           <div className="flex items-start justify-between border-b border-forest/10 p-5 sm:p-7">
             <div><p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne">Origin specification</p><h2 id="origin-title" className="mt-2 font-serif text-4xl font-semibold text-forest">{origin.name}</h2><p className="mt-1 text-xs text-charcoal">{origin.zone}</p></div>

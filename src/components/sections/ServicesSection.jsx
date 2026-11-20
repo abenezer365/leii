@@ -2,12 +2,13 @@ import { ArrowUpRight, Coffee, ClipboardCheck, Handshake, Map, SlidersHorizontal
 import { motion } from 'framer-motion';
 import { servicesData } from '../../data/servicesData.js';
 import SectionHeader from '../ui/SectionHeader.jsx';
+import coffeeBeans from '../../assets/best-image.jpeg';
 
 const icons = { coffee: Coffee, map: Map, sliders: SlidersHorizontal, quality: ClipboardCheck, partnership: Handshake };
 
 export default function ServicesSection({ onPartner }) {
   return (
-    <section id="services" className="scroll-mt-20 bg-white px-5 py-16 md:px-8 md:py-24">
+    <section id="services" className="scroll-mt-24 bg-white px-5 py-16 md:px-8 md:py-24">
       <div className="mx-auto max-w-page">
         <SectionHeader eyebrow="A better way to buy at origin" title="Good coffee. Good people. Good business." description="Everything you need to source Ethiopian coffee, handled directly." />
         <div className="grid border-l border-t border-forest/15 sm:grid-cols-2 lg:grid-cols-3">
@@ -23,7 +24,9 @@ export default function ServicesSection({ onPartner }) {
             </motion.article>;
           })}
         </div>
-        <div className="mt-10 flex flex-col items-start justify-between gap-6 bg-forest p-6 text-white md:flex-row md:items-center md:p-10">
+        <div className="partnership-banner mt-10 flex flex-col items-start justify-between gap-6 p-6 text-white md:flex-row md:items-center md:p-10">
+          <img src={coffeeBeans} alt="Roasted coffee beans and ground coffee" loading="lazy" />
+          <div className="partnership-banner-shade" />
           <div>
             <p className="mb-2 text-sm font-extrabold uppercase tracking-[0.2em] text-champagne">Let's build something good</p>
             <h3 className="max-w-2xl font-serif text-3xl font-semibold leading-tight md:text-4xl">Your Ethiopian coffee partner, from first sample to next harvest.</h3>

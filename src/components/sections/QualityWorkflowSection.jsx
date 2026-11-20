@@ -4,7 +4,7 @@ import SectionHeader from '../ui/SectionHeader.jsx';
 
 export default function QualityWorkflowSection() {
   return (
-    <section id="quality" className="scroll-mt-20 bg-cream px-5 py-16 md:px-8 md:py-24">
+    <section id="quality" className="scroll-mt-24 bg-cream px-5 py-16 md:px-8 md:py-24">
       <div className="mx-auto max-w-page">
         <SectionHeader eyebrow="Care at every step" title="Handled with care. Ready for the journey." description="From cherry selection to export, quality stays in focus." />
         <div className="grid border-l border-t border-forest/15 sm:grid-cols-2 lg:grid-cols-4">

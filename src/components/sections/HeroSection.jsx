@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function HeroSection() {
@@ -13,7 +13,7 @@ export default function HeroSection() {
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       >
         <p className="hero-kicker">Addis Ababa, Ethiopia <span>·</span> Green coffee, grown at origin</p>
-        <h1>Rooted in<br />Ethiopia.<br /><em>Ready for the world.</em></h1>
+        <h1><span>Rooted in</span><span>Ethiopia.</span><em>Ready for the world.</em></h1>
         <p className="hero-intro">Traceable Arabica. Six extraordinary origins. One direct line to your next great coffee.</p>
         <div className="hero-actions">
           <a href="#inquiry" className="hero-primary">Start a conversation <ArrowUpRight size={20} strokeWidth={1.8} /></a>
@@ -22,7 +22,6 @@ export default function HeroSection() {
       </motion.div>
       <div className="hero-bottom">
         <span>Guji / Sidama / Yirgacheffe / Limu / Jimma / Nekemte</span>
-        <a href="#heritage" aria-label="Scroll to learn about Le'ii"><ArrowDown size={20} strokeWidth={1.7} /></a>
       </div>
     </section>
   );

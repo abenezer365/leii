@@ -31,7 +31,7 @@ export default function InquirySection({ inquirySeed }) {
   }
 
   return (
-    <section id="inquiry" className="contact-section scroll-mt-20 px-5 py-20 md:px-8 md:py-32">
+    <section id="inquiry" className="contact-section scroll-mt-24 px-5 py-20 md:px-8 md:py-32">
       <div className="contact-layout mx-auto max-w-page">
         <div className="contact-copy">
           <p className="contact-kicker">Your next coffee starts here</p>

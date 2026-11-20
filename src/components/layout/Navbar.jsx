@@ -1,24 +1,79 @@
-import { useEffect, useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowDownRight, ArrowUpRight, Menu, X } from 'lucide-react';
 import logo from '../../assets/logo-white-bg.png';
 
 const links = [
-  ['Origins', '#origins'],
-  ['Our approach', '#heritage'],
-  ['Quality', '#quality'],
-  ['Contact', '#inquiry'],
+  ['01', 'Home', '#overview'],
+  ['02', 'Our story', '#heritage'],
+  ['03', 'Coffee origins', '#origins'],
+  ['04', 'Export services', '#services'],
+  ['05', 'Quality', '#quality'],
+  ['06', 'Get in touch', '#inquiry'],
 ];
 
 export default function Navbar({ onOpenProfile }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(() => window.scrollY < 90);
+  const previousScrollY = useRef(window.scrollY);
+  const touchStartY = useRef(null);
 
   useEffect(() => {
-    const updateScroll = () => setScrolled(window.scrollY > 90);
-    updateScroll();
+    function updateScroll() {
+      const currentScrollY = window.scrollY;
+      const change = currentScrollY - previousScrollY.current;
+      previousScrollY.current = currentScrollY;
+
+      if (currentScrollY < 90) {
+        setHeaderVisible(true);
+      } else if (change < -0.5) setHeaderVisible(true);
+      else if (change > 0.5 && !menuOpen) setHeaderVisible(false);
+    }
+
+    function updateWheel(event) {
+      if (window.scrollY < 90 || event.deltaY < 0) setHeaderVisible(true);
+      else if (event.deltaY > 0 && !menuOpen) setHeaderVisible(false);
+    }
+
+    function updateTouchStart(event) {
+      touchStartY.current = event.touches[0]?.clientY ?? null;
+    }
+
+    function updateTouchMove(event) {
+      const currentTouchY = event.touches[0]?.clientY;
+      if (touchStartY.current === null || currentTouchY === undefined) return;
+      const change = touchStartY.current - currentTouchY;
+      if (Math.abs(change) > 5) {
+        if (change > 0 && window.scrollY >= 90 && !menuOpen) setHeaderVisible(false);
+        else if (change < 0) setHeaderVisible(true);
+        touchStartY.current = currentTouchY;
+      }
+    }
+
     window.addEventListener('scroll', updateScroll, { passive: true });
-    return () => window.removeEventListener('scroll', updateScroll);
+    window.addEventListener('wheel', updateWheel, { passive: true });
+    window.addEventListener('touchstart', updateTouchStart, { passive: true });
+    window.addEventListener('touchmove', updateTouchMove, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', updateScroll);
+      window.removeEventListener('wheel', updateWheel);
+      window.removeEventListener('touchstart', updateTouchStart);
+      window.removeEventListener('touchmove', updateTouchMove);
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    function closeOnEscape(event) {
+      if (event.key === 'Escape') setMenuOpen(false);
+    }
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('navigation-open', menuOpen);
+    return () => document.body.classList.remove('navigation-open');
+  }, [menuOpen]);
 
   function navigateTo(target) {
     setMenuOpen(false);
@@ -27,34 +82,62 @@ export default function Navbar({ onOpenProfile }) {
 
   return (
     <>
-      <header className="mobile-header fixed inset-x-0 top-0 z-40 flex h-[72px] items-center justify-between px-5 md:hidden">
-        <a href="#overview" aria-label="Le'ii Coffee Exports home">
-          <img src={logo} alt="Le'ii Coffee Exports PLC" className="h-11 w-36 object-contain object-left" />
+      <header className={`site-header ${headerVisible || menuOpen ? 'site-header-visible' : ''}`}>
+        <a href="#overview" aria-label="Le'ii Coffee Exports home" className="site-brand">
+          <img src={logo} alt="Le'ii Coffee Exports PLC" />
+          <span>COFFEE EXPORTS PLC</span>
         </a>
-        <button type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)} className="grid h-12 w-12 place-items-center rounded-full bg-white/15 text-white backdrop-blur-md">
-          {menuOpen ? <X size={25} strokeWidth={1.7} /> : <Menu size={25} strokeWidth={1.7} />}
-        </button>
+        <div className="header-actions">
+          <button type="button" onClick={() => navigateTo('#inquiry')} className="header-contact">
+            <span>Request a quote</span><ArrowDownRight size={19} strokeWidth={1.8} />
+          </button>
+          <button
+            type="button"
+            className="header-menu-toggle"
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={menuOpen}
+            aria-controls="full-screen-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            {menuOpen ? <X size={25} strokeWidth={1.8} /> : <Menu size={25} strokeWidth={1.8} />}
+          </button>
+        </div>
       </header>
 
-      <nav className={`desktop-float-nav ${scrolled ? 'is-visible' : ''}`} aria-label="Main navigation" aria-hidden={!scrolled}>
-        <a href="#overview" aria-label="Le'ii Coffee Exports home" tabIndex={scrolled ? 0 : -1} className="nav-brand">
-          <img src={logo} alt="Le'ii Coffee Exports PLC" />
-        </a>
-        <div className="nav-links">
-          {links.map(([label, target]) => <a key={target} href={target} tabIndex={scrolled ? 0 : -1}>{label}</a>)}
-          <button type="button" tabIndex={scrolled ? 0 : -1} onClick={onOpenProfile}>Profile</button>
-        </div>
-        <button type="button" tabIndex={scrolled ? 0 : -1} onClick={() => navigateTo('#inquiry')} className="nav-cta">Talk coffee <ArrowUpRight size={17} strokeWidth={1.8} /></button>
-      </nav>
-
-      {menuOpen && (
-        <nav className="mobile-menu fixed inset-x-4 top-[82px] z-50 rounded-[28px] p-5 md:hidden" aria-label="Mobile navigation">
-          {links.map(([label, target]) => (
-            <a key={target} href={target} onClick={() => setMenuOpen(false)}>{label}<ArrowUpRight size={18} strokeWidth={1.7} /></a>
-          ))}
-          <button type="button" onClick={() => { setMenuOpen(false); onOpenProfile(); }}>Company profile<ArrowUpRight size={18} strokeWidth={1.7} /></button>
-        </nav>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="full-screen-navigation"
+            className="full-screen-navigation"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main navigation"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="full-nav-inner">
+              <div className="full-nav-intro">
+                <p>Le'ii Coffee Exports PLC</p>
+                <h2>Rooted in Ethiopia.<br /><span>Ready for the world.</span></h2>
+                <button type="button" className="full-nav-profile" onClick={() => { setMenuOpen(false); onOpenProfile(); }}>
+                  Company profile <ArrowUpRight size={20} strokeWidth={1.8} />
+                </button>
+              </div>
+              <nav className="full-nav-links" aria-label="Site sections">
+                {links.map(([number, label, target]) => (
+                  <a key={target} href={target} onClick={() => navigateTo(target)}>
+                    <span>{number}</span>{label}<ArrowDownRight size={21} strokeWidth={1.6} />
+                  </a>
+                ))}
+              </nav>
+              <img src={logo} alt="" aria-hidden="true" className="full-nav-watermark" />
+              <p className="full-nav-footer">ADDIS ABABA, ETHIOPIA <span>EST. 2025</span></p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
