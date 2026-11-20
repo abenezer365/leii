@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .field-label {
+    @apply block text-[10px] font-semibold uppercase tracking-[0.14em] text-forest;
+  }
+
+  .field-control {
+    @apply mt-2 block min-h-11 w-full rounded-none border border-forest/20 bg-white px-3 py-2 text-xs font-normal normal-case tracking-normal text-forest outline-none transition-colors placeholder:text-charcoal/45 focus:border-forest;
+  }
+}
+
+:root {
+  --forest: #122b22;
+  --forest-hover: #1b3d31;
+  --cream: #f7f4ee;
+  --white: #ffffff;
+  --champagne: #c5a059;
+  --charcoal: #3a4641;
+  --hairline: rgba(18, 43, 34, 0.12);
+  font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+  color: var(--forest);
+  background: var(--white);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: #ffffff;
+  background: #1b3d31;
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+
+  body {
+    color: #122b22;
+    background: #ffffff !important;
+    overflow: visible;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .company-profile-print,
+  .company-profile-print * {
+    visibility: visible !important;
+  }
+
+  .company-profile-print {
+    position: absolute !important;
+    inset: 0 auto auto 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+}

@@ -1,0 +1,17 @@
+export const companyProfileData = {
+  name: "Le'ii Coffee Exports PLC",
+  established: '2025',
+  location: 'Addis Ababa, Ethiopia',
+  overview: "Le'ii Coffee Exports PLC sources, evaluates, and exports traceable specialty and commercial green Arabica from Ethiopia's renowned highland coffee regions. Our export desk connects international buyers with origin-specific lots supported by clear specifications, quality checks, and export documentation.",
+  origins: 'Guji, Sidama, Yirgacheffe, Limu, Jimma, Nekemte',
+  grades: 'Grade 1 to Grade 5, subject to lot availability',
+  processing: 'Washed, Natural, Honey, and custom programs subject to availability',
+  packaging: '60kg food-grade jute bags with GrainPro hermetic inner liners',
+  capacity: '20ft FCL reference: 320 bags / 19.2 MT',
+  moisture: '10.5% to 11.5%',
+  screen: 'Screen 15+ (85% minimum retention), custom Screen 16/17 available',
+  logistics: 'FOB Djibouti and worldwide port delivery by arrangement',
+  contact: 'Tsion A., Export Manager',
+  phone: '+251 953 332 233',
+  email: 'info@leiicoffee.com',
+};
