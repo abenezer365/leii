@@ -8,7 +8,7 @@ export default function Footer({ onOpenProfile }) {
       <div className="mx-auto grid max-w-page gap-10 px-5 py-14 pb-24 md:grid-cols-2 md:px-8 md:pb-12 lg:grid-cols-[1.5fr_1fr_1fr_1.2fr] lg:gap-12 lg:py-16">
         <div>
           <img src={logo} alt="Le'ii Coffee Exports PLC" className="mb-5 h-12 w-44 object-contain object-left" />
-          <p className="max-w-sm text-sm leading-7 text-cream/75">Connecting Ethiopia's finest coffee origins with international importers, roasters, and distributors worldwide.</p>
+          <p className="max-w-sm text-sm leading-7 text-cream/75">Ethiopian coffee, connected to the world.</p>
           <p className="mt-5 text-[10px] uppercase tracking-[0.18em] text-champagne">Established 2025</p>
         </div>
         <div>

@@ -1,25 +1,23 @@
-import { Compass, Coffee, FileText, Handshake, MessageSquareText } from 'lucide-react';
+import { Compass, Coffee, FileText, MessageCircle, ShieldCheck } from 'lucide-react';
 
 const items = [
-  { label: 'Overview', icon: Compass, target: '#overview' },
+  { label: 'Home', icon: Compass, target: '#overview' },
   { label: 'Origins', icon: Coffee, target: '#origins' },
-  { label: 'Services', icon: Handshake, target: '#services' },
+  { label: 'Quality', icon: ShieldCheck, target: '#quality' },
   { label: 'Profile', icon: FileText, action: 'profile' },
-  { label: 'Inquire', icon: MessageSquareText, target: '#inquiry' },
+  { label: 'Contact', icon: MessageCircle, target: '#inquiry' },
 ];
 
 export default function MobileBottomNav({ onOpenProfile }) {
   return (
-    <nav className="safe-bottom fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t border-forest/10 bg-white md:hidden" aria-label="Mobile quick navigation">
+    <nav className="mobile-bottom-nav safe-bottom md:hidden" aria-label="Mobile quick navigation">
       {items.map(({ label, icon: Icon, target, action }) => action === 'profile' ? (
-        <button key={label} type="button" onClick={onOpenProfile} className="flex min-h-14 flex-col items-center justify-center gap-1 text-[10px] font-medium text-charcoal">
-          <Icon size={18} strokeWidth={1.5} />
-          <span>{label}</span>
+        <button key={label} type="button" onClick={onOpenProfile}>
+          <Icon size={23} strokeWidth={1.8} /><span>{label}</span>
         </button>
       ) : (
-        <a key={label} href={target} className="flex min-h-14 flex-col items-center justify-center gap-1 text-[10px] font-medium text-charcoal">
-          <Icon size={18} strokeWidth={1.5} />
-          <span>{label}</span>
+        <a key={label} href={target}>
+          <Icon size={23} strokeWidth={1.8} /><span>{label}</span>
         </a>
       ))}
     </nav>
